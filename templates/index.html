@@ -8,58 +8,69 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main.css') }}">
 
-    <title>Disaster Image Classifier</title>
+    <title>Bangkit Disaster Monitoring System</title>
   </head>
+
   <body class="bg-light">
+    <section id='left'>
+      <img id='indo' src="{{url_for('static', filename='indo.png')}}" align="middle" />
 
+      <div id='showreel'>
+        <!-- <container> -->
+          <img src="{{url_for('static', filename='cyclone.jpg')}}" align="middle" />
+          <img src="{{url_for('static', filename='flood.jpg')}}" align="middle" />
+        <!-- </container> -->
 
-    <div class="container p-4">
-        <h4 class="text-uppercase text-center font-weight-bold">image classifier app</h4><br>
-        <ul class="list-group">
-          <li class="list-group-item active text-uppercase">Things you can do</li>
-          <li class="list-group-item">Classify type of disaster between cyclone, earthquake, flood, and wildfire.</li>
-      </ul><br><br>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="text-uppercase text-center">Usage</h5>
-            <p>Click Browse and upload an image file. Supported format types are <bold><em>jpeg, jpg, and png.</em> </bold>Once done upload, click on predict button and you will see the predictions.</p>
-            </div>
-        </div><br><br>
+        <!-- <container> -->
+          <img src="{{url_for('static', filename='earthquake.jpg')}}" align="middle" />
+          <img src="{{url_for('static', filename='wildfire.jpg')}}" align="middle" />
+        <!-- </container> -->
+      </div>
+    </section>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-           {% if messages %}
-              {% for category, message in messages %}
+    <section id='right'>
+      <h1><b>Bangkit Disaster<br>Monitoring System</b></h1>
+      <h6>Recognize <i>cyclone, earthquake, flood, and wildfire</i> by processing image. Click browse and upload an image. Supported format types are jpeg, jpg, and png. Once done, click predict button.</h6>
 
-                 <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                     <strong class="text-uppercase">{{ category }} : </strong> {{ message}}
-                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                     </button>
-                 </div>
+      <br>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+             {% if messages %}
+                {% for category, message in messages %}
 
-              {% endfor %}
-           {% endif %}
-        {% endwith %}
+                   <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                       <strong class="text-uppercase">EVACUATE NOW! </strong>It's a <b>{{ message}}.</b> Get help by calling us <a href="tel:+62112">here.</a>
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
 
-        <form action="{{ url_for('predict') }}" enctype = "multipart/form-data" method="POST">
-            <div class="form-group">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile" name="file" required accept="image/*">
-                      <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-                <p class="filename"></p>
-                <div>
-                    <img class="img-fluid" width="100%" id="image" src="#" alt=""/>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block text-uppercase">predict</button>
-            <br>
-            <p class="text-center text-uppercase">Developed by aaditya ghag</p>
-            <p class="text-center text-primary"><a href="https://github.com/imaaditya-stack/Image-Classifier-Flask-App">View Original Source</a></p>
-        </form>
-    </div>
+                {% endfor %}
+             {% endif %}
+          {% endwith %}
+
+          <form action="{{ url_for('predict') }}" enctype = "multipart/form-data" method="POST">
+              <div class="form-group">
+                  <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile" name="file" required accept="image/*">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                  <p class="filename"></p>
+                  <div>
+                      <img class="img-fluid" width="100%" id="image" src="#" alt=""/>
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block text-uppercase btn-customized">predict</button>
+              <br>
+              <!-- <p class="text-center text-uppercase">Developed by aaditya ghag</p> -->
+              <!-- <p class="text-center text-primary"><a href="https://github.com/imaaditya-stack/Image-Classifier-Flask-App">View Original Source</a></p> -->
+          </form>
+      </div>
+    </section>
+
+  </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -67,5 +78,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+
   </body>
+
 </html>

@@ -57,7 +57,7 @@ def prepare_image(path):
 
     img_array_expanded_dims = np.expand_dims(img_array, axis=0)
 
-    img_array_expanded_dims /= 255. 
+    img_array_expanded_dims /= 255.
 
     #img_array_expanded_dims = np.array(img_array_expanded_dims)
 
@@ -98,7 +98,7 @@ def predict():
 
                 global sess
                 global graph
-                with graph.as_default(): 
+                with graph.as_default():
                     set_session(sess)
                     predictions = model.predict_classes(preprocessed_image)
 
@@ -108,7 +108,7 @@ def predict():
 
                     #label, probablity = label[1], round(label[2]*100,2)
 
-                    flash('Predicted class for the input image is {}'.format(label),'success')
+                    flash('{}'.format(label),'danger')
 
     return render_template('index.html')
 
