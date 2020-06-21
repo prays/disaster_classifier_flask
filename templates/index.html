@@ -20,8 +20,7 @@
 
       <div id='showreel'>
         <!-- <container> -->
-          <img src="{{url_for('static', filename='
-          .jpg')}}" align="middle" />
+          <img src="{{url_for('static', filename='cyclone.jpg')}}" align="middle" />
           <img src="{{url_for('static', filename='flood.jpg')}}" align="middle" />
         <!-- </container> -->
 
@@ -34,7 +33,7 @@
 
     <section id='right'>
       <h1><b>Bangkit Disaster<br>Monitoring System</b></h1>
-      <h6>Recognize <b>cyclone, earthquake, flood, and wildfire</b> by processing image. Click browse and upload an image. Supported format types are jpeg, jpg, and png. Once done, click predict button.</h6>
+      <h6>Recognize <i>cyclone, earthquake, flood, and wildfire</i> by processing image. Click browse and upload an image. Supported format types are jpeg, jpg, and png. Once done, click predict button.</h6>
 
       <br>
           {% with messages = get_flashed_messages(with_categories=true) %}
@@ -42,7 +41,7 @@
                 {% for category, message in messages %}
 
                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                       <strong class="text-uppercase">{{ category }} : </strong> {{ message}}
+                       <strong class="text-uppercase">EVACUATE NOW! </strong>It's a <b>{{ message}}.</b> Get help by calling us <a href="tel:+62112">here.</a>
                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
                        </button>
