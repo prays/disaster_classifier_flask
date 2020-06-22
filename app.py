@@ -6,14 +6,9 @@ from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 
 import tensorflow as tf
-#keras
-#from keras.layers.core import Dense, Activation
-#from keras.optimizers import Adam
-#from keras.metrics import categorical_crossentropy
-#from keras.preprocessing.image import ImageDataGenerator
+
 
 from keras.applications.imagenet_utils import decode_predictions
-#from keras.applications.mobilenet_v2 import preprocess_input, MobileNetV2
 from tensorflow import keras
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
@@ -28,9 +23,8 @@ K.clear_session()
 sess = tf.Session()
 graph = tf.get_default_graph()
 set_session(sess)
-#tf.compat.v1.disable_eager_execution()
-#Loading MobileNet Pretrained Model
-model = load_model('disaster_model.h5')
+
+model = load_model('disaster_and_non_model.h5')
 
 model.compile(optimizer='adam',
               loss='categorical_crossentropy')
@@ -70,8 +64,10 @@ def decode(labels):
         return 'earthquake'
     elif labels == 2:
         return 'flood'
-    else:
+    elif labels == 3:
         return 'wildfire'
+    else:
+        return 'no disaster'
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -104,11 +100,12 @@ def predict():
 
                     label = decode(predictions)
 
-                    #label = labels[0][0]
+                    if label == 'no disaster':
 
-                    #label, probablity = label[1], round(label[2]*100,2)
+                        flash('{}'.format(label), 'success')
 
-                    flash('{}'.format(label),'danger')
+                    else:
+                        flash('Its safe. {}'.format(label), 'danger')
 
     return render_template('index.html')
 
