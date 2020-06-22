@@ -102,10 +102,10 @@ def predict():
 
                     if label == 'no disaster':
 
-                        flash('{}'.format(label), 'success')
+                        flash('It\'s safe, {} detected.'.format(label), 'success')
 
                     else:
-                        flash('Its safe. {}'.format(label), 'danger')
+                        flash('EVACUATE NOW! It\'s a {}. Call 112 now for help.'.format(label), 'danger')
 
     return render_template('index.html')
 
